@@ -1,2 +1,11 @@
 include ':app'
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+  settingsDir,
+  'new_flutter_login/.android/include_flutter.groovy'
+))
 rootProject.name = "Flutter login embedding"
+
+include ':new_flutter_login'
+
+include ':new_flutter_login'
