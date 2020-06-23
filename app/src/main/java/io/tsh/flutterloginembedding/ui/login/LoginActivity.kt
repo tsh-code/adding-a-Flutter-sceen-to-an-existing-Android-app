@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import io.tsh.flutterloginembedding.App.Companion.FLUTTER_ENGINE_ID
 
 import io.tsh.flutterloginembedding.R
 import kotlinx.android.synthetic.main.activity_login.*
@@ -98,7 +99,7 @@ class LoginActivity : AppCompatActivity() {
 
             newLogin.setOnClickListener {
                 val intent = FlutterLoginActivity
-                    .withNewEngine()
+                    .withCachedEngine(FLUTTER_ENGINE_ID)
                     .build(this@LoginActivity)
                 startActivity(intent)
             }

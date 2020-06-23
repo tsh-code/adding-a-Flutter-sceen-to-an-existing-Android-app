@@ -1,10 +1,6 @@
 package io.tsh.flutterloginembedding.ui.login
 
-import android.content.Context
 import android.graphics.drawable.ColorDrawable
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import io.flutter.embedding.android.DrawableSplashScreen
@@ -15,11 +11,11 @@ import io.tsh.flutterloginembedding.R
 class FlutterLoginActivity : FlutterFragmentActivity() {
 
     companion object {
-        fun withNewEngine() = CustomNewEngineIntentBuilder()
+        fun withCachedEngine(engineId: String) = CustomCachedEngineIntentBuilder(engineId)
     }
 
-    class CustomNewEngineIntentBuilder :
-        FlutterFragmentActivity.NewEngineIntentBuilder(FlutterLoginActivity::class.java)
+    class CustomCachedEngineIntentBuilder(engineId: String) :
+        CachedEngineIntentBuilder(FlutterLoginActivity::class.java, engineId)
 
     override fun provideSplashScreen(): SplashScreen =
         DrawableSplashScreen(
@@ -27,5 +23,4 @@ class FlutterLoginActivity : FlutterFragmentActivity() {
             ImageView.ScaleType.CENTER,
             0
         )
-
 }
