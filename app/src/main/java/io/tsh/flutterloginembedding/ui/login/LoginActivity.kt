@@ -16,6 +16,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 
 import io.tsh.flutterloginembedding.R
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -32,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         val loading = findViewById<ProgressBar>(R.id.loading)
 
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
-                .get(LoginViewModel::class.java)
+            .get(LoginViewModel::class.java)
 
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer
@@ -66,16 +67,16 @@ class LoginActivity : AppCompatActivity() {
 
         username.afterTextChanged {
             loginViewModel.loginDataChanged(
-                    username.text.toString(),
-                    password.text.toString()
+                username.text.toString(),
+                password.text.toString()
             )
         }
 
         password.apply {
             afterTextChanged {
                 loginViewModel.loginDataChanged(
-                        username.text.toString(),
-                        password.text.toString()
+                    username.text.toString(),
+                    password.text.toString()
                 )
             }
 
@@ -83,8 +84,8 @@ class LoginActivity : AppCompatActivity() {
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
                         loginViewModel.login(
-                                username.text.toString(),
-                                password.text.toString()
+                            username.text.toString(),
+                            password.text.toString()
                         )
                 }
                 false
@@ -94,6 +95,13 @@ class LoginActivity : AppCompatActivity() {
                 loading.visibility = View.VISIBLE
                 loginViewModel.login(username.text.toString(), password.text.toString())
             }
+
+            newLogin.setOnClickListener {
+                val intent = FlutterLoginActivity
+                    .withNewEngine()
+                    .build(this@LoginActivity)
+                startActivity(intent)
+            }
         }
     }
 
@@ -102,9 +110,9 @@ class LoginActivity : AppCompatActivity() {
         val displayName = model.displayName
         // TODO : initiate successful logged in experience
         Toast.makeText(
-                applicationContext,
-                "$welcome $displayName",
-                Toast.LENGTH_LONG
+            applicationContext,
+            "$welcome $displayName",
+            Toast.LENGTH_LONG
         ).show()
     }
 
