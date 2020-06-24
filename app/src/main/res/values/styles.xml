@@ -7,4 +7,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="LaunchTheme">
+        <item name="android:windowBackground">@drawable/ic_launcher_background</item>
+    </style>
+
 </resources>
